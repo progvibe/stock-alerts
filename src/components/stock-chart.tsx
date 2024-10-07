@@ -12,15 +12,6 @@ import {
 } from "recharts";
 import { type MappedStockData } from "../util/alphaVantage";
 
-const mockData = [
-  { date: "2023-01-01", price: 100 },
-  { date: "2023-02-01", price: 120 },
-  { date: "2023-03-01", price: 110 },
-  { date: "2023-04-01", price: 130 },
-  { date: "2023-05-01", price: 140 },
-  { date: "2023-06-01", price: 135 },
-];
-
 export default function StockChart({
   stockData,
 }: {

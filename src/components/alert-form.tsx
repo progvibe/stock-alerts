@@ -11,11 +11,13 @@ import {
   SelectValue,
 } from "./ui/select";
 
-export default function AlertForm({ symbol }) {
+export default function AlertForm({ symbol }: { symbol: string }) {
   const [price, setPrice] = useState("");
   const [condition, setCondition] = useState("above");
 
-  const handleSubmit = (e) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleSubmit = (e: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     e.preventDefault();
     // In a real application, you would save this alert to a database or state management system
     console.log("Alert created:", { symbol, price, condition });

@@ -9,7 +9,6 @@ import {
   timestamp,
   varchar,
   integer,
-  foreignKey,
 } from "drizzle-orm/pg-core";
 
 /**

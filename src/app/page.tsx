@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { auth } from "~/auth";
 
 import { LatestPost } from "~/app/_components/post";
@@ -12,8 +11,6 @@ export default async function Home() {
   const session = await auth();
 
   const authenticated = session?.user !== undefined;
-
-  const hello = await api.post.hello({ text: "from tRPC" });
 
   void api.post.getLatest.prefetch();
 

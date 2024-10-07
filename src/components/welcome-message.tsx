@@ -2,7 +2,7 @@ import { auth } from "~/auth";
 
 export async function WelcomeMessage() {
   const session = await auth();
-  if (!session || !session.user) return null;
+  if (!session?.user) return null;
   return (
     <div>
       <p>Welcome {session.user.name ?? "Guest"}</p>

@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
+import { Resource } from "sst";
 import { db } from "~/server/db";
 import { users } from "~/server/db/schema";
 
@@ -11,7 +12,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
+    async signIn({ user, email }) {
       const userExists = await db.query.users.findFirst({
         with: { email },
       });

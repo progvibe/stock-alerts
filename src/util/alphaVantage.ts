@@ -24,34 +24,6 @@ const stockDataSchema = z.object({
   "Time Series (Daily)": z.record(dailyStockDataSchema), // Use z.record to handle dynamic keys (dates)
 });
 
-// Example input data to validate
-const exampleData = {
-  "Meta Data": {
-    "1. Information": "Daily Prices (open, high, low, close) and Volumes",
-    "2. Symbol": "IBM",
-    "3. Last Refreshed": "2024-10-04",
-    "4. Output Size": "Compact",
-    "5. Time Zone": "US/Eastern",
-  },
-  "Time Series (Daily)": {
-    "2024-10-04": {
-      "1. open": "223.7500",
-      "2. high": "226.0800",
-      "3. low": "223.2700",
-      "4. close": "226.0000",
-      "5. volume": "3554328",
-    },
-    "2024-10-03": {
-      "1. open": "219.5000",
-      "2. high": "222.8300",
-      "3. low": "219.2700",
-      "4. close": "222.7200",
-      "5. volume": "3788265",
-    },
-    // ... add more dates as needed
-  },
-};
-
 export type MappedStockData = {
   meta: {
     information: string;
@@ -70,7 +42,7 @@ export type MappedStockData = {
   }>;
 };
 
-export function mapAlphaVantageData(data: typeof exampleData): MappedStockData {
+export function mapAlphaVantageData(data: unknown): MappedStockData {
   const parsedData = stockDataSchema.parse(data);
 
   // Format "Last Refreshed" date

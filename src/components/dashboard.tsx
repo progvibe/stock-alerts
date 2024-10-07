@@ -21,21 +21,13 @@ export default function StockDashboard() {
   >(null);
 
   const handleSearch = async () => {
-    // In a real application, you would fetch stock data from an API
-    // For this example, we'll use mock data
-    const mockData = {
-      symbol: searchTerm.toUpperCase(),
-      price: Math.random() * 1000,
-      change: (Math.random() - 0.5) * 10,
-    };
-
     // Fetch stock data from alpha vantage
 
     const api = await fetch(
       `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${searchTerm}&apikey=${env.NEXT_PUBLIC_ALPHA_VANTAGE_API_KEY}`,
     );
-    const data = await api.json();
-    const parsedData = mapAlphaVantageData(data);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const parsedData = mapAlphaVantageData(await api.json());
     setStockData(parsedData);
     setTodayData(parsedData.timeSeries[0]!);
   };
